@@ -27,5 +27,10 @@ public class Transaction {
         return transactionType;
     }
 
+    @Override
+    public String toString() {
+        return description;
+    }
+
 
 }
