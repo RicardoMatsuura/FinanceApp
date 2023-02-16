@@ -1,17 +1,32 @@
+import java.util.InputMismatchException;
+import java.util.UUID;
+
 public class Transaction {
-    private int id;
+
+    private UUID id;
     private String description;
     private double value;
     private TransactionType transactionType;
 
-    public Transaction(int id, String description, double value, TransactionType transactionType) {
-        this.id = id;
+
+    public Transaction(String description, double value, TransactionType transactionType) {
+
+        if (value <= 0) {
+            throw new InputMismatchException("The value must be higher than 0");
+        }
+        if (transactionType == null) {
+            throw new InputMismatchException("The transaction type cannot be null");
+        }
+
+        id = UUID.randomUUID();
         this.description = description;
         this.value = value;
         this.transactionType = transactionType;
+
+
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -19,7 +34,7 @@ public class Transaction {
         return description;
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -29,7 +44,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return description;
+        return String.valueOf(id);
     }
 
 
